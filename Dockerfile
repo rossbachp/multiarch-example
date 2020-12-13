@@ -8,7 +8,7 @@ RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o hello-world .
 # starting second stage
 FROM alpine:3.12
 ARG BUILD-DATE
-LABEL org.opencontainers.image.authors=Peter Rossbach
+LABEL org.opencontainers.image.authors="Peter Rossbach"
 LABEL org.opencontainers.image.source=https://github.com/rosspbachp/multiarch-example.git
 LABEL org.opencontainers.image.licenses=Apache-2.0
 # copy the binary from the `build-stage`

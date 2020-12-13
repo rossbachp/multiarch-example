@@ -31,9 +31,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}  
-      - 
-        name: build the multi arch image
-        run: |
-          docker buildx build \
-          --tag rossbachp/multiarch-example:latest \
-          --platform linux/amd64,linux/arm/v7,linux/arm64 .
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          build-args: |
+            BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          push: true
+          tags: |
+            rossbachp/multiarch-example:latest
+            rossbachp/multiarch-example:1.0.0

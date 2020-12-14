@@ -46,3 +46,4 @@ jobs:
             rossbachp/multiarch-example:latest
             rossbachp/multiarch-example:1.0.0
             rossbachp/multiarch-example:${{ github.sha }}
+            rossbachp/mutliarch-example:${{ env.CI_SHA_SHORT }}

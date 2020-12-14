@@ -45,4 +45,4 @@ jobs:
           tags: |
             rossbachp/multiarch-example:latest
             rossbachp/multiarch-example:1.0.0
-            rossbachp/multiarch-example:${CI_SHA_SHORT}
+            rossbachp/multiarch-example:${{ github.sha }}

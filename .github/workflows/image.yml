@@ -40,7 +40,9 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           build-args: |
             BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            BUILD_REVISION=${CI_SHA_SHORT}
           push: true
           tags: |
             rossbachp/multiarch-example:latest
             rossbachp/multiarch-example:1.0.0
+            rossbachp/multiarch-example:${CI_SHA_SHORT}

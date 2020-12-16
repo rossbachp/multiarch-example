@@ -1,6 +1,6 @@
 # Play to build docker multi arch binaries with github actions
 
-![Master Branch CI](https://github.com/rossbachp/multiarch-example/workflows/Create%20Dev%20/badge.svg?branch=master) ![Nightly Test](https://github.com/rossbachp/multiarch-example/workflows/Nightly%20Test/badge.svg?branch=master)
+![Master Branch CI](https://github.com/rossbachp/multiarch-example/workflows/Create%20Dev%20Image/badge.svg?branch=master) ![Nightly Test](https://github.com/rossbachp/multiarch-example/workflows/Nightly%20Test/badge.svg?branch=master)
 
 Welcome. This is a simple example application to show a common Docker specific GitHub Action setup. We have a Go application that is built and
 deployed in Docker containers using Dockerfiles.

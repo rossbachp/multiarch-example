@@ -57,3 +57,4 @@ You can make it public going to the packages settings (change the username and p
 ## Reference
 
 * https://github.com/metcalfc/docker-action-examples
+  * My example based on this :)

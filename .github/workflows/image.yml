@@ -19,7 +19,7 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ]; then
             VERSION=nightly
           fi
-          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${{ env.CI_SHA_SHORT }}"
+          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${CI_SHA_SHORT}"
           echo ::set-output name=tags::${TAGS}
       -
         name: Set up QEMU

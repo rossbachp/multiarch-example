@@ -1,11 +1,11 @@
 # Play to build docker multi arch binaries with github actions
 
-![Master Branch CI](https://github.com/rossbachp/multiarch-example/workflows/Master%20Branch%20CI/badge.svg?branch=master) ![Nightly Test](https://github.com/rossbachp/multiarch-example/workflows/Nightly%20Test/badge.svg?branch=master)
+![Master Branch CI](https://github.com/rossbachp/multiarch-example/workflows/Create%20Dev%20/badge.svg?branch=master) ![Nightly Test](https://github.com/rossbachp/multiarch-example/workflows/Nightly%20Test/badge.svg?branch=master)
 
 Welcome. This is a simple example application to show a common Docker specific GitHub Action setup. We have a Go application that is built and
 deployed in Docker containers using Dockerfiles.
 
-This is a fork of https://github.com/metcalfc/docker-action-examples!
+This is project use this useful [Docker action examples](https://github.com/metcalfc/docker-action-examples)!
 
 ## Docker Actions v2
 
@@ -19,42 +19,43 @@ This is a fork of https://github.com/metcalfc/docker-action-examples!
 We want to setup CI to test:
 
 - ✒ [Every commit to `master`](https://github.com/rossbachp/multiarch-example/blob/master/.github/workflows/image.yml)
+- 🌃 [Integration tests nightly](https://github.com/rossbachp/multiarch-example/blob/master/.github/workflows/nightly.yml)
 - 🐳 [Releases via tags pushed to Docker Hub.](https://github.com/ossbachp/multiarch-example/blob/master/.github/workflows/release.yml)
 
-## GitHub Container Registry FAQ
+## Hack locally
 
-### Where does this `secret.GHCR_TOKEN` come from?
+Create a local image with your architecture
 
-The secret isn't automatically populated. The original GitHub Packages container registry did use the automatically generated `GITHUB_TOKEN`. GitHub has said that support for that will be added to this new registry in the future.
+```
+$ make dev
+```
 
-<br>
+If you don't have install a multi arch image builder, create one:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Support for Actions through GITHUB_TOKEN is coming.</p>&mdash; Bryan Clark (@clarkbw) <a href="https://twitter.com/clarkbw/status/1300853015113396225?ref_src=twsrc%5Etfw">September 1, 2020</a></blockquote>
+```
+$ make builder
+```
 
-<br>
+Build multiarch without load or push.
 
-For now you will need to create a GitHub Personal Access Token (PAT) which you can do by going here: https://github.com/settings/tokens
+```
+$ make build
+```
 
-You'll need to create the PAT with the correct scopes which you can find here: https://docs.github.com/en/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images#authenticating-with-the-container-registry
+Create multiarch and push to docker my account
 
-Once you have the PAT you can create an action secret: https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+NOTE: Login to the right hub account!
 
-You can call the secret whatever you want. But `GHCR_TOKEN` is what I used for the example above.
+```
+$ make push
+```
 
-### I thought GHCR had anonymous pulls?
+let the diffenent arch container images run
 
-Its a beta product so the documentation doesn't really exist yet. If you dig around on
-[GitHub's Community site](https://github.community/tag/ghcr) you can find some answers.
-Thats a pain so here is what I've found.
+```
+$ make run
+```
 
-`ghcr.io` is private by default. You'll notice in the [nightly.yml](.github/workflows/nightly.yml) I had to do a login to be able to pull the image.
+Regards,
 
-You can see what packages you have by going here (change the username): https://github.com/USERNAME?tab=packages&visibility=private
-
-You can make it public going to the packages settings (change the username and project name): https://github.com/users/USERNAME/packages/container/PROJECTNAME/settings
-
-
-## Reference
-
-* https://github.com/metcalfc/docker-action-examples
-  * My example based on this :)
+Peter <peter.rossbacg@bee42.com>

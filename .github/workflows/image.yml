@@ -20,7 +20,6 @@ jobs:
             VERSION=nightly
           fi
           TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${{ env.CI_SHA_SHORT }}"
-          fi
           echo ::set-output name=tags::${TAGS}
       -
         name: Set up QEMU

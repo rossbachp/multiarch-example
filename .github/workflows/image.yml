@@ -1,4 +1,4 @@
-name: Create dev image
+name: Create Dev Image
 
 on:
   push:

@@ -6,7 +6,7 @@ COPY hello-world.go .
 RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o hello-world .
 
 # starting second stage
-FROM alpine:3.12
+FROM alpine:3.12 as prod
 ARG BUILD_DATE
 ARG BUILD_REVISION
 LABEL org.opencontainers.image.authors="Peter Rossbach"

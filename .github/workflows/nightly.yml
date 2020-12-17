@@ -8,7 +8,7 @@ jobs:
   docker:
     runs-on: ubuntu-20.04
     env:
-      PROD_IMAGE: rossbachp/${{ github.event.repository.name }}:nightly
+      DEV_IMAGE: rossbachp/${{ github.event.repository.name }}:nightly
     steps:
       - name: Checkout
         uses: actions/checkout@v2

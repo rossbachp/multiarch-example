@@ -1,6 +1,6 @@
-# Play to build docker multi arch binaries with github actions
+# Play arround to build docker multi arch binaries with github actions
 
-![Master Branch CI](https://github.com/rossbachp/multiarch-example/workflows/Create%20Dev%20Image/badge.svg?branch=main) ![Nightly Test](https://github.com/rossbachp/multiarch-example/workflows/Nightly%20Test/badge.svg?branch=main)
+![Master Branch CI](https://github.com/rossbachp/multiarch-example/workflows/Create%20Dev%20Image/badge.svg?branch=main) ![Nightly Test](https://github.com/rossbachp/multiarch-example/workflows/Nightly%20Test/badge.svg?branch=main) ![Release](https://github.com/rossbachp/multiarch-example/workflows/Publish%20Releases%20to%20Hub/badge.svg?branch=main)
 
 Welcome. This is a simple example application to show a common Docker specific GitHub Action setup. We have a Go application that is built and
 deployed in Docker containers using Dockerfiles.
@@ -56,6 +56,13 @@ let the diffenent arch container images run
 $ make run
 ```
 
+Trigger the release with
+
+```
+$ git tag -a v1.0.3
+$ git push origin v1.0.3
+```
+
 Regards,
 
-Peter <peter.rossbacg@bee42.com>
+Peter <peter.rossbach@bee42.com>

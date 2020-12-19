@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - 
+        uses: FranzDiebold/github-env-vars-action@v2
       - name: build local image and let it run
         run: make dev
         env:

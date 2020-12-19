@@ -19,7 +19,7 @@ PROD_IMAGE?=rossbachp/multiarch-example:${TAG}
 all: dev
 dev:
 	@docker buildx build --tag ${DEV_IMAGE} --load .
-	@docker run --rm -it ${DEV_IMAGE}
+	@docker run --rm ${DEV_IMAGE}
 
 # Build a production image for the application.
 .PHONY: build

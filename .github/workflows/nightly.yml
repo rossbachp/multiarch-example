@@ -7,10 +7,11 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-20.04
-    env:
-      DEV_IMAGE: rossbachp/${{ github.event.repository.name }}:nightly
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: build local image and let it run
         run: make dev
+        env:
+          DEV_IMAGE: rossbachp/${{ github.event.repository.name }}:nightly
+      

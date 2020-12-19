@@ -16,6 +16,8 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       - 
+        uses: FranzDiebold/github-env-vars-action@v2
+      - 
         name: Prepare
         id: prep
         run: |

@@ -3,7 +3,7 @@ name: Nightly Test
 # Run the nightly tests at at 8 AM UTC / 1 AM Pacific
 on:
   schedule:
-    - cron: "0 8 * * *"
+    - cron: "0 17 * * *"
 jobs:
   docker:
     runs-on: ubuntu-20.04
@@ -15,5 +15,5 @@ jobs:
       - name: build local image and let it run
         run: make dev
         env:
-          DEV_IMAGE: rossbachp/${{ github.event.repository.name }}:nightly
+          DEV_IMAGE: ${CI_REPOSITORY}:nightly
       

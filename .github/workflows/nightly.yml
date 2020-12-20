@@ -3,7 +3,7 @@ name: Nightly Test
 # Run the nightly tests at at 5 AM UTC
 on:
   schedule:
-    - cron: "2 5 * * *"
+    - cron: "10 5 * * *"
 jobs:
   docker:
     runs-on: ubuntu-20.04

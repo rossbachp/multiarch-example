@@ -8,6 +8,9 @@ ifeq ($(GIT_TAG),)
 	GIT_TAG=edge
 endif
 
+BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
+GIT_SHA=$(shell git rev-parse --short HEAD)
+
 # When you create your secret use the DockerHub in the name and this will find it
 REPO?=$(shell basename ${PWD})
 TAG?=${GIT_TAG}
@@ -18,13 +21,18 @@ PROD_IMAGE?=rossbachp/multiarch-example:${TAG}
 .PHONY: dev
 all: dev
 dev:
-	@docker buildx build --tag ${DEV_IMAGE} --load .
+	@docker buildx build --tag ${DEV_IMAGE} \
+	--build-arg BUILD_DATE=${BUILD_DATE} \
+	--build-arg BUILD_REVISION=${GIT_SHA} \
+	--load .
 	@docker run --rm ${DEV_IMAGE}
 
 # Build a production image for the application.
 .PHONY: build
 build:
 	@docker --context default buildx build \
+	--build-arg BUILD_DATE=${BUILD_DATE} \
+	--build-arg BUILD_REVISION=${GIT_SHA} \
 	--platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 \
 	--tag ${PROD_IMAGE} .
 
@@ -32,6 +40,8 @@ build:
 .PHONY: push
 push:
 	@docker --context default buildx build \
+	--build-arg BUILD_DATE=${BUILD_DATE} \
+	--build-arg BUILD_REVISION=${GIT_SHA} \
 	--platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 \
 	--push --tag ${PROD_IMAGE} .
 

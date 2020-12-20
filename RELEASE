@@ -1,6 +1,6 @@
 
-RELEASE 1.0.7
-  - use GHCR for developmet
+RELEASE 1.0.8
+  - use GHCR for development
   - add build date and revision to local dev container builds
   - fix nightly and dev workflows
   - add github release build after tag
@@ -8,7 +8,7 @@ RELEASE 1.0.7
 Use the image with:
 
 ```
-$ docker container run --rm -it rossbachp/multiarch-example:1.0.7
-$ docker container run --rm -it --platform linux/arm64 rossbachp/multiarch-example:1.0.7
+$ docker container run --rm -it rossbachp/multiarch-example:1.0.8
+$ docker container run --rm -it --platform linux/arm64 rossbachp/multiarch-example:1.0.8
 ```
 

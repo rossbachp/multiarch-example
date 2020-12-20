@@ -3,7 +3,7 @@ name: Nightly Test
 # Run the nightly tests at at 7 AM UTC
 on:
   schedule:
-    - cron: "0 7 * * *"
+    - cron: "0 9 * * *"
 jobs:
   docker:
     runs-on: ubuntu-20.04
@@ -19,10 +19,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}        
-      - name: build local image and let it run
+      - 
+        name: build local image and let it run
         run: |
           make dev
-          docker push ${DEV_IMAGE}
+          echo ${DEV_IMAGE}
+          docker image push ${DEV_IMAGE}
         env:
           DEV_IMAGE: ghcr.io/${CI_REPOSITORY}:nightly
       

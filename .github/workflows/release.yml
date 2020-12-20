@@ -93,8 +93,9 @@ jobs:
       - 
         name: check value # confirm the value for check, you can ignore it.
         run: |
-          echo ${{ steps.commit.outputs.title }}    
-          echo ${{ steps.commit.outputs.body }}
+          echo ${{ steps.commit.outputs.title}}    
+          echo ${{ steps.commit.outputs.body}}
+          echo ${{ steps.commit.outputs.note}}
       - 
         name: 'Create Release'
         uses: actions/create-release@v1
@@ -102,10 +103,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: ${{ steps.commit.outputs.title }}   # use the title
+          release_name: ${{ steps.commit.outputs.title}}   # use the title
           body: |                                                                 # use the body
-            ${{ steps.commit.outputs.body }}
-            ${{ steps.commit.outputs.note }}
+            ${{ steps.commit.outputs.body}}
+            ${{ steps.commit.outputs.note}}
           draft: false
           prerelease: false
       - 

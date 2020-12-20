@@ -1,0 +1,13 @@
+RELEASE 1.0.4
+  - use GHCR for developmet
+  - add build date and revision to local dev container builds
+  - fix nightly and dev workflows
+  - add github release build after tag
+
+Use the image with:
+
+```
+$ docker container run --rm -it rossbachp/multiarch-example:1.0.4
+$ docker container run --rm -it --platform linux/arm64 rossbachp/multiarch-example:1.0.4
+```
+

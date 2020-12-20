@@ -83,17 +83,31 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - 
-        name: Create Release
-        id: create_release
+        name: check headcommit message
+        id: commit
+        run: |
+          str="$(jq '.head_commit.message' $GITHUB_EVENT_PATH)"    # get the head_commit message
+          echo ::set-output name=title::${str%%\\n*} | tr -d '"'   # get the title
+          echo ::set-output name=body::${str##*\\n} | tr -d '"'    # get the body
+          echo ::set-output name=note::$(cat ./RELEASE)
+      - 
+        name: check value # confirm the value for check, you can ignore it.
+        run: |
+          echo ${{ steps.commit.outputs.title }}    
+          echo ${{ steps.commit.outputs.body }}
+      - 
+        name: 'Create Release'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body_path: RELEASE
+          release_name: ${{ steps.commit.outputs.title }}   # use the title
+          body: |                                                                 # use the body
+            ${{ steps.commit.outputs.body }}
+            ${{ steps.commit.outputs.note }}
           draft: false
-          prerelease: false    
+          prerelease: false
       - 
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
